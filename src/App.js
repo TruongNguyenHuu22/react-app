@@ -1,10 +1,10 @@
-import AlbumFeature from "./features/Album/pages";
+import TodoFeature from "./features/Todo/pages";
 
 function App() {
     return (
         <div className="App">
-            {/* <TodoFeature /> */}
-            <AlbumFeature />
+            <TodoFeature />
+            {/* <AlbumFeature /> */}
         </div>
     );
 }
