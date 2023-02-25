@@ -8,7 +8,9 @@ const TodoFeature = (props) => {
         {id : 3, title : "Code", status: 'new'},
     ]
 
-    const [todoList, setTodoList] = useState(initTodoList)
+    const [todoList, setTodoList] = useState(initTodoList);
+    const [filterStatus, setFilterStatus] = useState('all');
+
     const handleTodoClick = (todo, idx) => {
         //clone current array to new one
         const newTodoList = [...todoList];
@@ -20,10 +22,25 @@ const TodoFeature = (props) => {
         setTodoList(newTodoList);
     }
 
+    const handleShowAll = () => {
+        setFilterStatus('all');
+    }
+    const handleShowCompleted = () => {
+        setFilterStatus('completed');
+    }
+    const handleShowNew = () => {
+        setFilterStatus('new');
+    }
+
+    const renderedTodoList = todoList.filter(todo => filterStatus === 'all' || filterStatus ===todo.status )
+
     return (
         <div>
             <h3>Todo List</h3>
-            <TodoList todoList={todoList} onTodoClick={handleTodoClick}/>
+            <TodoList todoList={renderedTodoList} onTodoClick={handleTodoClick}/>
+            <button onClick={handleShowAll}>Show All</button>
+            <button onClick={handleShowCompleted}>Show completed</button>
+            <button onClick={handleShowNew}>Show new</button>
         </div>
     );
 };
