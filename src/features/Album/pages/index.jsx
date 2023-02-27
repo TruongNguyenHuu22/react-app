@@ -1,4 +1,5 @@
-import React from 'react';
+import { useEffect } from 'react';
+import productApi from '../../../api/productApi';
 import AlbumList from '../components/AlbumList';
 
 const AlbumFeature = (props) => {
@@ -13,6 +14,15 @@ const AlbumFeature = (props) => {
         {id : 8, name:"Album 8", thumbnailUrl:"https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/d/f/0/9/df094e79da1005342032c00fbbe50abd.jpg"},
         {id : 9, name:"Album 9", thumbnailUrl:"https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/a/3/b/2/a3b2b31ff8591cb7d6260377e06471fa.jpg"},
     ]
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            const productList = await productApi.getAll();
+            console.log("🚀 ~ file: index.jsx:21 ~ fetchProducts ~ productList:", productList)
+        }
+        fetchProducts()
+        
+    },[])
 
     return (
         <div>
