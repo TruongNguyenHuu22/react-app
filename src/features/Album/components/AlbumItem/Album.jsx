@@ -2,11 +2,8 @@ import React from 'react';
 import PropTypes from "prop-types";
 import './styles.scss';
 
-Album.propTypes = {
-    album: PropTypes.object.isRequired
-}
 
-function Album ({album}) {
+const Album = ({album})  =>{
 
     return (
         <div className='album'>
@@ -17,5 +14,9 @@ function Album ({album}) {
         </div>
     );
 };
+
+Album.propTypes = {
+    album: PropTypes.object.isRequired
+}
 
 export default Album;

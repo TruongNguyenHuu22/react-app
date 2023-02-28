@@ -3,7 +3,7 @@ import NotFound from './components/NotFound';
 import AlbumFeature from './features/Album/pages';
 import TodoFeature from './features/Todo/pages';
 
-function App() {
+const App = () => {
   let activeClassName = 'underline';
   return (
     <div className="App">
@@ -27,6 +27,6 @@ function App() {
       Footer
     </div>
   );
-}
+};
 
 export default App;

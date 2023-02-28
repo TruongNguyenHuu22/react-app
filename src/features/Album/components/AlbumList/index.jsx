@@ -1,14 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Album from "../AlbumItem/Album";
 import './styles.scss';
+import Album from "../AlbumItem/Album";
 
-AlbumList.propTypes = {
-    albumList: PropTypes.array.isRequired,
-};
-
-
-function AlbumList({ albumList }) {
+const AlbumList = ({ albumList }) => {
     return <ul className="album-list">
         {albumList.map(album => (
             <li key={album.id}>
@@ -17,5 +12,9 @@ function AlbumList({ albumList }) {
         ))}
     </ul>;
 }
+
+AlbumList.propTypes = {
+    albumList: PropTypes.array.isRequired,
+};
 
 export default AlbumList;

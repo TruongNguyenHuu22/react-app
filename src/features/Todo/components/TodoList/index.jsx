@@ -3,14 +3,7 @@ import classnames from "classnames";
 import PropTypes from "prop-types";
 import './styles.scss';
 
-TodoList.propTypes = {
-    todoList: PropTypes.array,
-};
-TodoList.defaultProps = {
-    todoList: [],
-};
-
-function TodoList({ todoList, onTodoClick }) {
+const TodoList = ({ todoList, onTodoClick }) => {
     const handleTodoClick = (todo, idx) => {
         if(!onTodoClick) return;
 
@@ -31,5 +24,12 @@ function TodoList({ todoList, onTodoClick }) {
         ))}
     </ul>;
 }
+
+TodoList.propTypes = {
+    todoList: PropTypes.array,
+};
+TodoList.defaultProps = {
+    todoList: [],
+};
 
 export default TodoList;

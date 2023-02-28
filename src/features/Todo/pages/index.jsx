@@ -1,6 +1,7 @@
 import queryString from "query-string";
 import { useEffect, useMemo, useState } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
+import TodoForm from "../components/TodoForm";
 import TodoList from "../components/TodoList";
 
 const TodoFeature = (props) => {
@@ -51,8 +52,14 @@ const TodoFeature = (props) => {
         [filterStatus, todoList]
     );
 
+    const handleTodoFormSubmit =(values) => {
+        console.log("form:", values);
+    }
+
     return (
         <div>
+            <h3>What to do</h3>
+            <TodoForm onSubmit={handleTodoFormSubmit}/>
             <h3>Todo List</h3>
             <TodoList
                 todoList={renderedTodoList}
