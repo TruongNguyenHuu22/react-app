@@ -6,7 +6,8 @@ const InputField = (props) => {
   const { form, name, label, disabled } = props;
   const { formState } = form;
 
-  const hasError = formState.touchedFields[name] && formState.errors[name];
+  const hasError = formState.errors[name];
+
   return (
     <Controller
       name={name}
@@ -17,7 +18,7 @@ const InputField = (props) => {
           {...{ value, label, disabled }}
           fullWidth
           error={!!hasError}
-          helperText="skdjhfgj"
+          helperText={formState.errors[name]?.message}
         />
       )}
     />
