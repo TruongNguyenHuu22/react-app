@@ -1,6 +1,7 @@
 import { NavLink, Route, Routes } from 'react-router-dom';
 import NotFound from './components/NotFound';
 import AlbumFeature from './features/Album/pages';
+import CounterFeature from './features/Counter';
 import TodoFeature from './features/Todo/pages';
 
 const App = () => {
@@ -19,12 +20,11 @@ const App = () => {
         </NavLink>
       </p>
       <Routes>
-        <Route path="/" element={<TodoFeature />} />
+        <Route path="/" element={<CounterFeature />} />
         <Route path="/todo" element={<TodoFeature />} />
         <Route path="/albums" element={<AlbumFeature />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      Footer
     </div>
   );
 };

@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
-import InputField from '../../../../components/form-controls/InputField';
+// import InputField from '../../../../components/form-controls/InputField';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import InputField from 'components/form-controls/InputField';
 
 const TodoForm = (props) => {
   const { onSubmit } = props;
