@@ -17,6 +17,7 @@ const InputField = (props) => {
           onChange={onChange}
           {...{ value, label, disabled }}
           fullWidth
+          margin="normal"
           error={!!hasError}
           helperText={formState.errors[name]?.message}
         />
