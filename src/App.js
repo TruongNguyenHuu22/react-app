@@ -9,7 +9,6 @@ const App = () => {
   return (
     <div className="App">
       <Header />
-
       <Routes>
         <Route path="/" element={<CounterFeature />} />
         <Route path="/todo" element={<TodoFeature />} />

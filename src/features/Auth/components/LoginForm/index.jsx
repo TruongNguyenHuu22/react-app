@@ -35,32 +35,18 @@ const Progress = styled(LinearProgress)(({ theme }) => ({
   right: 0,
 }));
 
-const RegisterForm = (props) => {
+const LoginForm = (props) => {
   const { onSubmit } = props;
 
   const schema = yup.object().shape({
-    fullName: yup
-      .string()
-      .required()
-      .test('should has at least 2 words', 'Please enter at least 2 words', (value) => {
-        return value.split(' ').length >= 2;
-      })
-      .label('Full name'),
-    email: yup.string().email().required().label('Email'),
-    password: yup.string().required().label('Password').min(6, 'Please enter at least 6 characters'),
-    retypePassword: yup
-      .string()
-      .required()
-      .label('Retype Password')
-      .oneOf([yup.ref('password')], 'Password does not match'),
+    identifier: yup.string().email().required().label('Email'),
+    password: yup.string().required().label('Password'),
   });
 
   const form = useForm({
     defaultValues: {
-      fullName: '',
-      email: '',
+      identifier: '',
       password: '',
-      retypePassword: '',
     },
     resolver: yupResolver(schema),
   });
@@ -80,23 +66,21 @@ const RegisterForm = (props) => {
         <LockOutlinedIcon />
       </CustomAvatar>
       <Title component="h1" variant="h5">
-        Create an account
+        Sign in
       </Title>
       <form onSubmit={form.handleSubmit(handleSubmit)}>
-        <InputField name="fullName" label="Full name" form={form} />
-        <InputField name="email" label="Email" form={form} />
+        <InputField name="identifier" label="identifier" form={form} />
         <PasswordField name="password" label="Password" form={form} />
-        <PasswordField name="retypePassword" label="Retype Password" form={form} />
         <SubmitButton type="submit" variant="contained" color="primary" fullWidth disabled={isSubmitting} size="large">
-          Create an account
+          Sign in
         </SubmitButton>
       </form>
     </Content>
   );
 };
 
-RegisterForm.propTypes = {
+LoginForm.propTypes = {
   onsubmit: PropTypes.func,
 };
 
-export default RegisterForm;
+export default LoginForm;
