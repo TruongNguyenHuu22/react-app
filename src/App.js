@@ -1,4 +1,5 @@
 import Header from 'components/Header';
+import ProductFeature from 'features/Product';
 import { Route, Routes } from 'react-router-dom';
 import NotFound from './components/NotFound';
 import AlbumFeature from './features/Album/pages';
@@ -13,6 +14,7 @@ const App = () => {
         <Route path="/" element={<CounterFeature />} />
         <Route path="/todo" element={<TodoFeature />} />
         <Route path="/albums" element={<AlbumFeature />} />
+        <Route path="/products" element={<ProductFeature />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
