@@ -1,5 +1,6 @@
 import Header from 'components/Header';
 import {
+  CART,
   PRODUCT_DETAIL,
   PRODUCT_DETAIL_ADDITIONAL,
   PRODUCT_DETAIL_DESCRIPTION,
@@ -8,6 +9,7 @@ import {
 } from 'constants/route';
 import ProductFeature from 'features/Product';
 import DetailPage from 'features/Product/pages/DetailPage';
+import CartFeature from 'features/ShoppingCart';
 import { Route, Routes } from 'react-router-dom';
 import NotFound from './components/NotFound';
 import AlbumFeature from './features/Album/pages';
@@ -27,6 +29,8 @@ const App = () => {
         <Route path={PRODUCT_DETAIL_DESCRIPTION} element={<DetailPage />} />
         <Route path={PRODUCT_DETAIL_ADDITIONAL} element={<DetailPage />} />
         <Route path={PRODUCT_DETAIL_REVIEW} element={<DetailPage />} />
+        <Route path={CART} element={<CartFeature />} />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
