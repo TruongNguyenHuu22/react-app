@@ -1,8 +1,6 @@
 import { Box, Container, Grid, Paper } from '@mui/material';
 import { styled } from '@mui/system';
-import productApi from 'api/productApi';
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import ProductInfo from '../components/ProductInfo';
 import ProductThumbnail from '../components/ProductThumbnail';
 import useProductDetail from '../hooks/useProductDetail';
 
@@ -35,7 +33,9 @@ function DetailPage(props) {
               <LeftSide item>
                 <ProductThumbnail product={product} />
               </LeftSide>
-              <RightSide item>product info</RightSide>
+              <RightSide item>
+                <ProductInfo product={product} />
+              </RightSide>
             </Grid>
           </Paper>
         </Container>
