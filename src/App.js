@@ -1,5 +1,11 @@
 import Header from 'components/Header';
-import { PRODUCT_DETAIL, PRODUCT_LIST } from 'constants/route';
+import {
+  PRODUCT_DETAIL,
+  PRODUCT_DETAIL_ADDITIONAL,
+  PRODUCT_DETAIL_DESCRIPTION,
+  PRODUCT_DETAIL_REVIEW,
+  PRODUCT_LIST,
+} from 'constants/route';
 import ProductFeature from 'features/Product';
 import DetailPage from 'features/Product/pages/DetailPage';
 import { Route, Routes } from 'react-router-dom';
@@ -18,6 +24,9 @@ const App = () => {
         <Route path="/albums" element={<AlbumFeature />} />
         <Route path={PRODUCT_LIST} element={<ProductFeature />} />
         <Route path={PRODUCT_DETAIL} element={<DetailPage />} />
+        <Route path={PRODUCT_DETAIL_DESCRIPTION} element={<DetailPage />} />
+        <Route path={PRODUCT_DETAIL_ADDITIONAL} element={<DetailPage />} />
+        <Route path={PRODUCT_DETAIL_REVIEW} element={<DetailPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

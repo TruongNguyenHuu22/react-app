@@ -1,6 +1,8 @@
-import { Box, Container, Grid, Paper } from '@mui/material';
+import { Box, Container, Grid, LinearProgress, Paper } from '@mui/material';
 import { styled } from '@mui/system';
+import AddToCardForm from '../components/AddToCardForm';
 import ProductInfo from '../components/ProductInfo';
+import ProductMenu from '../components/ProductMenu';
 import ProductThumbnail from '../components/ProductThumbnail';
 import useProductDetail from '../hooks/useProductDetail';
 
@@ -16,18 +18,29 @@ const RightSide = styled(Grid)(({ theme }) => ({
   padding: 12,
 }));
 
+const DetailContainer = styled(Container)(({ theme }) => ({
+  paddingBottom: 24,
+}));
+
 function DetailPage(props) {
   const { product, loading } = useProductDetail();
 
+  const handleAddToCartSubmit = (formValues) => {
+    console.log('🚀 ~ file: DetailPage.jsx:24 ~ handleAddToCartSubmit ~ formValues:', formValues);
+  };
+
   if (loading) {
-    //skeleton loading
-    return <Box>Loading</Box>;
+    return (
+      <Box>
+        <LinearProgress />
+      </Box>
+    );
   }
 
   return (
     <Box pt={4}>
       <Box>
-        <Container>
+        <DetailContainer>
           <Paper elevation={0}>
             <Grid container>
               <LeftSide item>
@@ -35,10 +48,12 @@ function DetailPage(props) {
               </LeftSide>
               <RightSide item>
                 <ProductInfo product={product} />
+                <AddToCardForm onSubmit={handleAddToCartSubmit} />
               </RightSide>
             </Grid>
           </Paper>
-        </Container>
+          <ProductMenu product={product} />
+        </DetailContainer>
       </Box>
     </Box>
   );
