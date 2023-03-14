@@ -1,5 +1,7 @@
 import { Box, Container, Grid, LinearProgress, Paper } from '@mui/material';
 import { styled } from '@mui/system';
+import { addToCart } from 'features/ShoppingCart/cartSlice';
+import { useDispatch } from 'react-redux';
 import AddToCardForm from '../components/AddToCardForm';
 import ProductInfo from '../components/ProductInfo';
 import ProductMenu from '../components/ProductMenu';
@@ -24,9 +26,16 @@ const DetailContainer = styled(Container)(({ theme }) => ({
 
 function DetailPage(props) {
   const { product, loading } = useProductDetail();
+  const dispatch = useDispatch();
 
-  const handleAddToCartSubmit = (formValues) => {
-    console.log('🚀 ~ file: DetailPage.jsx:24 ~ handleAddToCartSubmit ~ formValues:', formValues);
+  const handleAddToCartSubmit = ({ quantity }) => {
+    const action = addToCart({
+      id: product.id,
+      product,
+      quantity,
+    });
+    console.log('🚀 ~ file: DetailPage.jsx:32 ~ handleAddToCartSubmit ~ action:', action);
+    dispatch(action);
   };
 
   if (loading) {

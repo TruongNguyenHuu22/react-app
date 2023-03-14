@@ -1,6 +1,7 @@
 import { AccountCircle, Close } from '@mui/icons-material';
 import CodeIcon from '@mui/icons-material/Code';
-import { IconButton, Menu, MenuItem, styled } from '@mui/material';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { Badge, IconButton, Menu, MenuItem, styled } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -8,11 +9,14 @@ import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import { ALBUM, CART, PRODUCT_LIST, TODO } from 'constants/route';
 import Login from 'features/Auth/components/Login';
 import Register from 'features/Auth/components/Register';
 import { logout } from 'features/Auth/userSlice';
+import { cartItemsCountSelector } from 'features/ShoppingCart/selectors';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const CloseButton = styled(IconButton)(({ theme }) => ({
   position: 'absolute',
@@ -26,11 +30,13 @@ const MODE = { LOGIN: 'login', REGISTER: 'register' };
 
 export default function Header() {
   const loggedInUser = useSelector((state) => state.user.current);
+  const cartItemsCount = useSelector(cartItemsCountSelector);
   const isLoggedIn = !!loggedInUser.id;
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const [mode, setMode] = useState(MODE.LOGIN);
   const [anchorEl, setAnchorEl] = useState(null);
+  const navigate = useNavigate();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -62,12 +68,26 @@ export default function Header() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             KUKAN SHOP
           </Typography>
-          <Button color="inherit">Todo</Button>
-          <Button color="inherit">Album</Button>
+          <Button color="inherit" onClick={() => navigate(PRODUCT_LIST)}>
+            Product
+          </Button>
+          <Button color="inherit" onClick={() => navigate(TODO)}>
+            Todo
+          </Button>
+          <Button color="inherit" onClick={() => navigate(ALBUM)}>
+            Album
+          </Button>
           {!isLoggedIn ? (
-            <Button color="inherit" onClick={handleClickOpen}>
-              Login
-            </Button>
+            <>
+              <IconButton size="large" color="inherit" onClick={() => navigate(CART)}>
+                <Badge badgeContent={cartItemsCount} color="error">
+                  <ShoppingCartIcon />
+                </Badge>
+              </IconButton>
+              <Button color="inherit" onClick={handleClickOpen}>
+                Login
+              </Button>
+            </>
           ) : (
             <IconButton color="inherit" onClick={handleUserClick}>
               <AccountCircle />
