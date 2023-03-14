@@ -1,17 +1,16 @@
-import { useSelector } from 'react-redux';
-import { cartItemsCountSelector, cartTotalSelector } from './selectors';
+import { Box } from '@mui/material';
+import { Container } from '@mui/system';
+import TableHeader from './components/TableHeader';
 
 CartFeature.propTypes = {};
 
 function CartFeature(props) {
-  const total = useSelector(cartTotalSelector);
-  console.log('🚀 ~ file: index.jsx:10 ~ CartFeature ~ total:', total);
-
-  const count = useSelector(cartItemsCountSelector);
   return (
-    <div>
-      Cart feature {total} -- {count}
-    </div>
+    <Box mt={4}>
+      <Container>
+        <TableHeader />
+      </Container>
+    </Box>
   );
 }
 
