@@ -1,6 +1,7 @@
-import { Box } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import { Container } from '@mui/system';
-import TableHeader from './components/TableHeader';
+import PaymentInformation from './components/PaymentInformation';
+import TableCartItems from './components/TableCartItems';
 
 CartFeature.propTypes = {};
 
@@ -8,7 +9,14 @@ function CartFeature(props) {
   return (
     <Box mt={4}>
       <Container>
-        <TableHeader />
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={8} lg={8}>
+            <TableCartItems />
+          </Grid>
+          <Grid item xs={12} md={4} lg={4}>
+            <PaymentInformation />
+          </Grid>
+        </Grid>
       </Container>
     </Box>
   );

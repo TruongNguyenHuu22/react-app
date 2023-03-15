@@ -1,22 +1,16 @@
-import styled from '@emotion/styled';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
-import { Box, FormControl, FormHelperText, IconButton, OutlinedInput, Typography } from '@mui/material';
+import { FormControl, FormHelperText, Typography } from '@mui/material';
+import QuantitySelector from 'components/QuantitySelector';
 import PropTypes from 'prop-types';
 import { Controller } from 'react-hook-form';
-
-const QuantityBox = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  flexFlow: 'row nowrap',
-  alignItems: 'center',
-  maxWidth: '200px',
-}));
 
 const QuantityField = (props) => {
   const { form, name, label, disabled } = props;
   const { formState, setValue } = form;
 
   const hasError = formState.errors[name];
+
+  const handleDecrease = (name, value) => setValue(name, Number.parseInt(value) ? Number.parseInt(value) - 1 : 1);
+  const handleIncrease = (name, value) => setValue(name, Number.parseInt(value) ? Number.parseInt(value) + 1 : 1);
 
   return (
     <FormControl fullWidth margin="normal" variant="outlined">
@@ -25,21 +19,11 @@ const QuantityField = (props) => {
         name={name}
         control={form.control}
         render={({ field: { onChange, onBlur, value, name } }) => (
-          <QuantityBox>
-            <IconButton onClick={() => setValue(name, Number.parseInt(value) ? Number.parseInt(value) - 1 : 1)}>
-              <RemoveCircleOutlineIcon />
-            </IconButton>
-            <OutlinedInput
-              id={name}
-              type="number"
-              value={value}
-              {...{ disabled, onChange, onBlur }}
-              error={!!hasError}
-            />
-            <IconButton onClick={() => setValue(name, Number.parseInt(value) ? Number.parseInt(value) + 1 : 1)}>
-              <AddCircleOutlineIcon />
-            </IconButton>
-          </QuantityBox>
+          <QuantitySelector
+            {...{ onChange, onBlur, disabled, hasError, name, value }}
+            decrease={() => handleDecrease(name, value)}
+            increase={() => handleIncrease(name, value)}
+          />
         )}
       />
       <FormHelperText error={!!hasError}>{formState.errors[name]?.message}</FormHelperText>
