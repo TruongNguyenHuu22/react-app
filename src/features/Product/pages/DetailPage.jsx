@@ -34,7 +34,6 @@ function DetailPage(props) {
       product,
       quantity,
     });
-    console.log('🚀 ~ file: DetailPage.jsx:32 ~ handleAddToCartSubmit ~ action:', action);
     dispatch(action);
   };
 

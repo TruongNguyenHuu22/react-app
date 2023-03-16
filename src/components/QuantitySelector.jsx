@@ -1,16 +1,9 @@
-import styled from '@emotion/styled';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
-import { Box, IconButton, OutlinedInput } from '@mui/material';
+import { IconButton, OutlinedInput } from '@mui/material';
+import { QuantityBox } from 'features/Product/components/StyledComponent/Commons';
 
 QuantitySelector.propTypes = {};
-
-const QuantityBox = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  flexFlow: 'row nowrap',
-  alignItems: 'center',
-  maxWidth: '200px',
-}));
 
 function QuantitySelector(props) {
   const { increase, decrease, onChange, onBlur, disabled, hasError, name, value } = props;
